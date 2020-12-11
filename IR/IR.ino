@@ -52,9 +52,8 @@ void loop(){
     // 設定條件二 -> 閥 紅茶
     if (IR_1 == 1 && IR_2 == 0 && IR_3 == 1){
         delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
-        myservo.write(90);
-        delay(3000);
-        myservo.write(0);
+        servo();
+        delay(timer);
     }
 
     // 設定條件三 -> 伺服馬達
