@@ -1,5 +1,6 @@
 int timer = 500;
 
+// 設定紅外線腳位
 int IR_Sensor_1 = 8;
 int IR_Sensor_2 = 12;
 int IR_Sensor_3 = 13;
@@ -8,6 +9,7 @@ int IR_1;
 int IR_2;
 int IR_3;
 
+// 設定繼電器腳位
 int relay = 4;
 
 void setup(){
@@ -30,17 +32,20 @@ void loop(){
     Serial.println(IR_2);
     Serial.print("IR_3=");
     Serial.println(IR_3);
-    //-------------------------------------
 
+    //-------------------------------------
+    // 設定條件一
     if (IR_1 == 0 && IR_2 == 1 && IR_3 == 1){
+        delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
         water();
         delay(timer);
     }
 }
 
+// add milktea 
 int water(){
-    digitalWrite(relay, HIGH);
-    delay(timer);
-    digitalWrite(relay, LOW);
+    digitalWrite(relay, HIGH); // 加水
+    delay(3000);
+    digitalWrite(relay, LOW); // 停水
     delay(timer);
 }
