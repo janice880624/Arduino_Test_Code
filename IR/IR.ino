@@ -1,3 +1,7 @@
+#include <Servo.h>
+
+Servo myservo;
+
 int timer = 500;
 
 // 設定紅外線腳位
@@ -18,6 +22,8 @@ void setup(){
     pinMode(IR_Sensor_2, INPUT);
     pinMode(IR_Sensor_3, INPUT);
     pinMode(relay, OUTPUT);
+    myservo.attach(9);
+    myservo.write(0);
     delay(timer);
 }
 
@@ -32,13 +38,23 @@ void loop(){
     Serial.println(IR_2);
     Serial.print("IR_3=");
     Serial.println(IR_3);
+    
 
     //-------------------------------------
-    // 設定條件一
+
+    // 設定條件一 -> 閥
     if (IR_1 == 0 && IR_2 == 1 && IR_3 == 1){
         delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
         water();
         delay(timer);
+    }
+
+    // 設定條件二 -> 伺服馬達
+    if (IR_1 == 1 && IR_2 == 0 && IR_3 == 1){
+        delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
+        myservo.write(90);
+        delay(3000);
+        myservo.write(0);
     }
 }
 
