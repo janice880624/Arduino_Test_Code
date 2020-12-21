@@ -52,14 +52,14 @@ void loop(){
     // 設定條件二 -> 閥 紅茶
     if (IR_1 == 1 && IR_2 == 0 && IR_3 == 1){
         delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
-        servo();
+        water();
         delay(timer);
     }
 
     // 設定條件三 -> 伺服馬達
-    if (IR_1 == 1 && IR_2 == 0 && IR_3 == 0){
+    if (IR_1 == 1 && IR_2 == 1 && IR_3 == 0){
         delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
-        water();
+        servo_bubble();
         delay(timer);
     }
 }
@@ -72,7 +72,7 @@ int water(){
 }
 
 // add bubble
-int servo(){
+int servo_bubble(){
     myservo.write(90);
     delay(3000);
     myservo.write(0);
