@@ -14,14 +14,17 @@ int IR_2;
 int IR_3;
 
 // setting relay position
-int relay = 4;
+
+int relay_1 = 7;
+int relay_2 = 4;
 
 void setup(){
     Serial.begin(9600);
     pinMode(IR_Sensor_1, INPUT);
     pinMode(IR_Sensor_2, INPUT);
     pinMode(IR_Sensor_3, INPUT);
-    pinMode(relay, OUTPUT);
+    pinMode(relay_1, OUTPUT);
+    pinMode(relay_2, OUTPUT);
     myservo.attach(9);
     myservo.write(0);
     delay(timer);
@@ -44,14 +47,14 @@ void loop(){
     // condition 1st -> valve milktea
     if (IR_1 == 0 && IR_2 == 1 && IR_3 == 1){
         delay(2000); // add delay avoid start the arm before it arrives
-        water();
+        water_1();
         delay(timer);
     }
 
     // condition 2ed -> valve blacktea
     if (IR_1 == 1 && IR_2 == 0 && IR_3 == 1){
         delay(2000); // add delay avoid start the arm before it arrives
-        water();
+        water_2();
         delay(timer);
     }
 
@@ -64,10 +67,16 @@ void loop(){
 }
 
 // add milktea redtea
-int water(){
-    digitalWrite(relay, HIGH); // add water
-    delay(3000);
-    digitalWrite(relay, LOW); // stop water
+int water_1(){
+    digitalWrite(relay_1, HIGH); // add water
+    delay(2000);
+    digitalWrite(relay_1, LOW); // stop water
+}
+
+int water_2(){
+    digitalWrite(relay_2, HIGH); // add water
+    delay(2000);
+    digitalWrite(relay_2, LOW); // stop water
 }
 
 // add bubble
