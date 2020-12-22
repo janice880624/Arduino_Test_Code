@@ -2,7 +2,7 @@
 
 Servo myservo;
 
-int timer = 500;
+int timer = 5000;
 
 // setting IR position
 int IR_Sensor_1 = 8;
@@ -82,6 +82,6 @@ int water_2(){
 // add bubble
 int servo_bubble(){
     myservo.write(90);
-    delay(3000);
+    delay(1500);
     myservo.write(0);
 }
