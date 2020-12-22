@@ -2,6 +2,7 @@
 
 Servo myservo;
 
+// setting timer
 int timer_wait = 5000;
 int timer_water = 6000;
 int timer_arm = 2000;
