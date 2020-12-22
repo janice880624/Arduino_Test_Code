@@ -4,7 +4,7 @@ Servo myservo;
 
 int timer = 500;
 
-// 設定紅外線腳位
+// setting IR position
 int IR_Sensor_1 = 8;
 int IR_Sensor_2 = 12;
 int IR_Sensor_3 = 13;
@@ -13,7 +13,7 @@ int IR_1;
 int IR_2;
 int IR_3;
 
-// 設定繼電器腳位
+// setting relay position
 int relay = 4;
 
 void setup(){
@@ -39,26 +39,25 @@ void loop(){
     Serial.print("IR_3=");
     Serial.println(IR_3);
     
-
     //-------------------------------------
 
-    // 設定條件一 -> 閥 奶茶
+    // condition 1st -> valve milktea
     if (IR_1 == 0 && IR_2 == 1 && IR_3 == 1){
-        delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
+        delay(2000); // add delay avoid start the arm before it arrives
         water();
         delay(timer);
     }
 
-    // 設定條件二 -> 閥 紅茶
+    // condition 2ed -> valve blacktea
     if (IR_1 == 1 && IR_2 == 0 && IR_3 == 1){
-        delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
+        delay(2000); // add delay avoid start the arm before it arrives
         water();
         delay(timer);
     }
 
-    // 設定條件三 -> 伺服馬達
+    // condition 3rd -> servo
     if (IR_1 == 1 && IR_2 == 1 && IR_3 == 0){
-        delay(2000); // 加入等待秒數，防止手臂還沒到就啟動
+        delay(2000); // add delay avoid start the arm before it arrives
         servo_bubble();
         delay(timer);
     }
@@ -66,9 +65,9 @@ void loop(){
 
 // add milktea redtea
 int water(){
-    digitalWrite(relay, HIGH); // 加水
+    digitalWrite(relay, HIGH); // add water
     delay(3000);
-    digitalWrite(relay, LOW); // 停水
+    digitalWrite(relay, LOW); // stop water
 }
 
 // add bubble
