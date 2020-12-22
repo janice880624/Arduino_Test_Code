@@ -46,8 +46,8 @@ void loop(){
 
     // condition 1st -> valve milktea
     if (IR_1 == 0 && IR_2 == 1 && IR_3 == 1){
-        delay(2000); // add delay avoid start the arm before it arrives
-        water_1();
+        delay(2000); // add delay avoid start the arm before it arrives 
+        servo_bubble();
         delay(timer);
     }
 
@@ -61,7 +61,7 @@ void loop(){
     // condition 3rd -> servo
     if (IR_1 == 1 && IR_2 == 1 && IR_3 == 0){
         delay(2000); // add delay avoid start the arm before it arrives
-        servo_bubble();
+        water_1();
         delay(timer);
     }
 }
@@ -69,13 +69,13 @@ void loop(){
 // add milktea redtea
 int water_1(){
     digitalWrite(relay_1, HIGH); // add water
-    delay(2000);
+    delay(6000);
     digitalWrite(relay_1, LOW); // stop water
 }
 
 int water_2(){
     digitalWrite(relay_2, HIGH); // add water
-    delay(2000);
+    delay(6000);
     digitalWrite(relay_2, LOW); // stop water
 }
 
